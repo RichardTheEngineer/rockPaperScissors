@@ -2,6 +2,12 @@ const rockbtn = document.querySelector("button");
 const paperbtn = document.querySelector("#paperbtn");
 const scissorsbtn = document.querySelector("#scissorsbtn");
 const result = document.querySelector("#result");
+const gamePlayed = document.querySelector("#gamePlayed");
+const playerScoreInfo = document.querySelector("#playerScore");
+const computerScoreInfo = document.querySelector("#computerScore");
+
+let playerScore = 0;
+let computerScore = 0;
 
 rockbtn.addEventListener("click", () => {
     playRound("rock", getComputerChoice())
@@ -34,6 +40,7 @@ function playRound(playerSelection, computerSelection){
     let playerWon;
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
+    gamePlayed.textContent = "Player: " + playerSelection + " Computer: " + computerSelection;
 
     if (playerSelection == computerSelection){
         console.log( "It's a draw!")
@@ -43,10 +50,15 @@ function playRound(playerSelection, computerSelection){
     (playerSelection == "scissors" && computerSelection == "paper")||
     (playerSelection == "paper" && computerSelection == "rock")){
        console.log("Player Won");
+       playerScore += 1;
+       playerScoreInfo.textContent = "Player Score: " + playerScore;
+       
        result.textContent = "WIN";
     }
 
     else {
+        computerScore += 1;
+        computerScoreInfo.textContent = "Computer Score: " + computerScore;
         console.log("Player Lost");
         result.textContent = "LOSE";
     }
