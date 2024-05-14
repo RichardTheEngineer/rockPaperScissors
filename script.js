@@ -1,3 +1,8 @@
+const rockbtn = document.querySelector("button");
+const paperbtn = document.querySelector("#paperbtn");
+const scissorsbtn = document.querySelector("#scissorsbtn")
+
+
 function getComputerChoice(){
     choice = Math.floor(Math.random()*3);
     switch(choice){
@@ -21,18 +26,18 @@ function playRound(playerSelection, computerSelection){
     computerSelection = computerSelection.toLowerCase();
 
     if (playerSelection == computerSelection){
-        return "It's a draw!";
+        console.log( "It's a draw!");
     }
     if ((playerSelection == "rock" && computerSelection == "scissors")||
     (playerSelection == "scissors" && computerSelection == "paper")||
     (playerSelection == "paper" && computerSelection == "rock")){
-        playerWon = true;
+       console.log("playerWon = true");
     }
 
     else {
-        return false;
+        console.log("return false");
     }
-    return playerWon
+    console.log("return playerWon")
 }
 
 function playGame(){
@@ -62,3 +67,7 @@ function playGame(){
     else {result = " You lost the game!"}
     return ("Computer: " + computerWins + " Player: " + playerWins + result )
 }
+
+rockbtn.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+});
